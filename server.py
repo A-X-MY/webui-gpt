@@ -72,7 +72,7 @@ signal.signal(signal.SIGINT, signal_handler)
 
 def create_interface():
 
-    title = 'Text generation web UI'
+    title = '养老医疗 web UI'
 
     # Password authentication
     auth = []
