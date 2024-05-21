@@ -167,7 +167,7 @@ def list_interface_input_elements():
         'top_a',
     ]
 
-    # Chat elements
+    # 聊天元素
     elements += [
         'textbox',
         'start_with',
@@ -186,7 +186,7 @@ def list_interface_input_elements():
         'chat-instruct_command',
     ]
 
-    # Notebook/default elements
+    # 笔记本/默认元素
     elements += [
         'textbox-notebook',
         'textbox-default',
@@ -195,7 +195,7 @@ def list_interface_input_elements():
         'prompt_menu-notebook',
     ]
 
-    # Model elements
+    # 模型元素
     elements += list_model_elements()
 
     return elements
@@ -218,7 +218,7 @@ def apply_interface_values(state, use_persistent=False):
 
     elements = list_interface_input_elements()
     if len(state) == 0:
-        return [gr.update() for k in elements]  # Dummy, do nothing
+        return [gr.update() for k in elements]  # 虚拟，不做任何操作
     else:
         return [state[k] if k in state else gr.update() for k in elements]
 
@@ -239,7 +239,7 @@ def save_settings(state, preset, extensions_list, show_controls, theme_state):
     output['show_controls'] = show_controls
     output['dark_theme'] = True if theme_state == 'dark' else False
 
-    # Save extension values in the UI
+    # 在 UI 中保存扩展值
     for extension_name in extensions_list:
         extension = getattr(extensions, extension_name, None)
         if extension:
@@ -248,11 +248,11 @@ def save_settings(state, preset, extensions_list, show_controls, theme_state):
                 params = getattr(extension, 'params')
                 for param in params:
                     _id = f"{extension_name}-{param}"
-                    # Only save if different from default value
+                    # 仅保存与默认值不同的值
                     if param not in shared.default_settings or params[param] != shared.default_settings[param]:
                         output[_id] = params[param]
 
-    # Do not save unchanged settings
+    # 不要保存未更改的设置
     for key in list(output.keys()):
         if key in shared.default_settings and output[key] == shared.default_settings[key]:
             output.pop(key)
@@ -262,7 +262,7 @@ def save_settings(state, preset, extensions_list, show_controls, theme_state):
 
 def create_refresh_button(refresh_component, refresh_method, refreshed_args, elem_class, interactive=True):
     """
-    Copied from https://github.com/AUTOMATIC1111/stable-diffusion-webui
+    从 https://github.com/AUTOMATIC1111/stable-diffusion-webui 复制
     """
     def refresh():
         refresh_method()
