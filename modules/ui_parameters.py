@@ -45,7 +45,7 @@ def create_ui(default_preset):
                                 shared.gradio['auto_max_new_tokens'] = gr.Checkbox(value=shared.settings['auto_max_new_tokens'], label='auto_max_new_tokens', info='将 max_new_tokens 扩展到可用的上下文长度。')
                                 shared.gradio['ban_eos_token'] = gr.Checkbox(value=shared.settings['ban_eos_token'], label='禁止 eos_token', info='强制模型永远不会过早结束生成。')
                                 shared.gradio['add_bos_token'] = gr.Checkbox(value=shared.settings['add_bos_token'], label='在提示词开头添加 bos_token', info='禁用此选项可以使回复更具创造力。')
-                                shared.gradio['custom_stopping_strings'] = gr.Textbox(lines=2, value=shared.settings["自定义停止字符串"] or None, label='用 "" 包裹并用逗号分隔。', placeholder='"\\n", "\\nYou:"')
+                                shared.gradio['custom_stopping_strings'] = gr.Textbox(lines=2, value=shared.settings["custom_stopping_strings"] or None, label='自定义停止符', info='', placeholder='"\\n", "\\nYou:"')
                                 shared.gradio['custom_token_bans'] = gr.Textbox(value=shared.settings['custom_token_bans'] or None, label='token禁止', info='要禁止的token ID，用逗号分隔。可以在“默认”或“笔记本”选项卡中找到 ID。')
 
                             shared.gradio['penalty_alpha'] = gr.Slider(0, 5, value=generate_params['penalty_alpha'], label='penalty_alpha', info='用于对比搜索。do_sample 必须取消选中。')
